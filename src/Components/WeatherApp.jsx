@@ -110,6 +110,7 @@ const WeatherApp = () => {
     setUIIconsAndData(responseJson);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const getLatLongAndWeatherDataFromCityInput = async (e) => {
     e.preventDefault();
     try {
@@ -196,6 +197,7 @@ const WeatherApp = () => {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleCityChange = (e) => {
     if (e.target.value === '') {
       setError('');
@@ -211,13 +213,16 @@ const WeatherApp = () => {
   return (
     <div className='container'>
       <div className='top-bar'>
-        <form onSubmit={getLatLongAndWeatherDataFromCityInput}>
+        {/* // TODO Add onSubmit attribute and relevant function to handle the input
+        change */}
+        <form onSubmit={() => null}>
           <div className='citySearchForm'>
             <input
               type='text'
               className='cityInput'
               value={cityName}
-              onChange={handleCityChange}
+              // TODO Add onChange attribute and relevant function to handle the input change
+
               placeholder='Search any city'
             />
 

@@ -110,34 +110,6 @@ const WeatherApp = () => {
     setUIIconsAndData(responseJson);
   };
 
-  const getLatLongAndWeatherDataFromCityInput = async (e) => {
-    e.preventDefault();
-    try {
-      const queryParams = new URLSearchParams({
-        address: cityName,
-        key: GOOGLE_API_KEY,
-      }).toString();
-
-      const response = await fetch(`${GEO_CODING_URL}?${queryParams}`);
-
-      if (!response.ok) {
-        setError('Geocoding API request failed');
-        return;
-      }
-
-      const responseJson = await response.json();
-
-      // eslint-disable-next-line no-unsafe-optional-chaining
-      const { lat, lng } = responseJson?.results[0]?.geometry?.location;
-      getWeatherDataFromCoords({ lat, lon: lng });
-    } catch (error) {
-      console.error('Error making Geocoding API request', error);
-
-      setError('Error making Geocoding API request');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  };
-
   // Directly Fetch Weather data with city name :UNUSED:
   // eslint-disable-next-line no-unused-vars
   const search = async () => {
@@ -211,7 +183,12 @@ const WeatherApp = () => {
   return (
     <div className='container'>
       <div className='top-bar'>
-        <form onSubmit={getLatLongAndWeatherDataFromCityInput}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log(`Form Submitted`);
+          }}
+        >
           <div className='citySearchForm'>
             <input
               type='text'

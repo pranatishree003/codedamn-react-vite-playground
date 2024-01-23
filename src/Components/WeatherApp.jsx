@@ -1,6 +1,7 @@
 import './WeatherApp.css';
 import { useState, useEffect } from 'react';
-import { toast, Bounce } from 'react-toastify';
+// TODO Add Error Message Using the `toast` function
+import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
 import constants from '../config/constants';
 
@@ -11,19 +12,6 @@ import drizzleIcon from '../assets/drizzle.png';
 import rainIcon from '../assets/rain.png';
 import snowIcon from '../assets/snow.png';
 import windIcon from '../assets/wind.png';
-
-const errorParam = {
-  position: 'bottom-center',
-  autoClose: 5000,
-  hideProgressBar: true,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: false,
-  progress: undefined,
-  theme: 'colored',
-  transition: Bounce,
-  toastId: 'failure-msg',
-};
 
 const WeatherApp = () => {
   // Based On Error We can show some ErrorMessage Not Using Now
@@ -52,7 +40,7 @@ const WeatherApp = () => {
         },
         (err) => {
           setError(`Geolocation error: ${err.message}`);
-          toast.error(`Geolocation error: ${err.message}`, errorParam);
+          // TODO Error Message
         }
       );
     } else {
@@ -74,10 +62,8 @@ const WeatherApp = () => {
       const response = await fetch(url);
 
       if (!response.ok) {
-        return toast.error(
-          "Couldn't fetch current city name data.",
-          errorParam
-        );
+        return;
+        // TODO : Error Message
       }
 
       const responseJson = await response.json();
@@ -100,10 +86,8 @@ const WeatherApp = () => {
     const response = await fetch(url);
 
     if (!response.ok) {
-      return toast.error(
-        "Couldn't fetch current location's weather data.",
-        errorParam
-      );
+      return;
+      // TODO Error Message
     }
 
     const responseJson = await response.json();

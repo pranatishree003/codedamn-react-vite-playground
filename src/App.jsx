@@ -1,5 +1,5 @@
 'use client'; // For Error Boundary
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import './App.css';
@@ -16,22 +16,8 @@ function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallBack} onError={logError}>
       <WeatherApp />
-      <ToastContainer
-        // position='top-right'
-        // autoClose={5000}
-        limit={1}
-        // hideProgressBar={false}
-        // newestOnTop={false}
-        // closeOnClick
-        // rtl={false}
-        // pauseOnFocusLoss
-        // draggable
-        // pauseOnHover
-        // theme='light'
-        // transition={Bounce}
-      />
-      {/* Same as */}
-      <ToastContainer />
+      {/* TODO Add Toast Container */}
+      {/* <ToastContainer /> */}
     </ErrorBoundary>
   );
 }
